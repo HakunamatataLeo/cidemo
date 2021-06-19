@@ -2,11 +2,10 @@ pipeline {
   agent none
   stages {
     stage('build and test') {
+      agent { docker { image 'python:3.6.9-alpine' } }
       stages {
         stage('build'){
-          agent any
           steps {
-            bat 'C:/ProgramData/DockerDesktop/version-bin/docker.exe pull python:3.6.9-alpine'
             sh 'pip install --no-cache-dir -r requirements.txt'
           }
         }
